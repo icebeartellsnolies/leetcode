@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "xiosbase": "cpp",
+        "queue": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
