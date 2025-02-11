@@ -1,2 +1,2 @@
 # leetcode
-leetcode problems mostly solved in python bt a few are in cpp as well
+leetcode problems mostly solved in python but a few are in cpp as well
