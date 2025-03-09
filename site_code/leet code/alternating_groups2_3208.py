@@ -1,0 +1,2 @@
+def numberOfAlternatingGroups(colors,k):
+    
