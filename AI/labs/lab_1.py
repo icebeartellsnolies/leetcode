@@ -1,4 +1,6 @@
 from copy import deepcopy
+from time import time
+from memory_profiler import profile
 class Node:
     def __init__(self, state, parent=None):
         self.state=state
@@ -84,25 +86,41 @@ class PuzzleSolver:
                 children.append(child)
         return children
 
+    
     def solve_puzzle(self, by):
         # Implement the search strategy for simple backtracking
        
         if by.strip().lower()=='dfs':
+            start_time=time()
             to_backtrack=self.solve_puzzle_dfs()
+            end_time=time()
+            e_time=end_time-start_time
+            print(f"Execution time: {e_time:.4f} seconds")
             parents=[]
             while to_backtrack!=None:
                 parents.append(to_backtrack.parent)
                 to_backtrack=to_backtrack.parent
+            
+            
 
         elif by.strip().lower()=='bfs':
+            start_time=time()
             to_backtrack=self.solve_puzzle_bfs()
+            end_time=time()
+            e_time=end_time-start_time
+            print(f"Execution time: {e_time:.4f} seconds")
             parents=[]
             while to_backtrack!=None:
                 parents.append(to_backtrack.parent)
                 to_backtrack=to_backtrack.parent
+            
         
         else:
+            start_time=time()
             to_backtrack, depth=self.solve_puzzle_dfid()
+            end_time=time()
+            e_time=end_time-start_time
+            print(f"Execution time: {e_time:.4f} seconds")
             parents=[]
             while to_backtrack!=None:
                 parents.append(to_backtrack.parent)
@@ -189,8 +207,9 @@ class PuzzleSolver:
 
     def disp_solution(self, nodes):
         opposite = [n for n in nodes if n is not None]
-        for i in range(len(opposite)-1,-1,-1):
-            print(opposite[i])
+        print(len(opposite))
+        # for i in range(len(opposite)-1,-1,-1):
+        #     print(opposite[i])
 
 #Run this Test-Case
 

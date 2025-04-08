@@ -1,6 +1,7 @@
 import heapq
 from copy import deepcopy
-
+from time import time
+from memory_profiler import profile
 class PriorityQueue:
     def __init__(self):
         self.q=[]
@@ -119,9 +120,11 @@ class PuzzleSolver:
                 children.append(child)
         return children
     
+   
     def solve_puzzle(self):
         if not self.is_solvable(self.start):
             return f'the given state isnt solvable'
+        start_time=time()
         pq = PriorityQueue()
         pq.enqueue(self.start)
         explored = set()
@@ -129,6 +132,9 @@ class PuzzleSolver:
             curr=pq.dequeue()
             if curr.h==0:
                 self.print_solution(curr)
+                end_time=time()
+                e_time=end_time-start_time
+                print(f"Execution time: {e_time:.4f} seconds")
                 return
             flt=tuple(self.flatten(curr))
             if flt in explored:
@@ -139,7 +145,7 @@ class PuzzleSolver:
                 child_tuple=tuple(self.flatten(c))
                 if child_tuple not in explored:
                     pq.enqueue(c)
-
+        
         return
     
     def print_solution(self, node):        
@@ -148,8 +154,8 @@ class PuzzleSolver:
             path.append(node)
             node=node.parent
         print('it took',len(path)-2,'steps')
-        for i in range(len(path)-1,-1,-1):
-            print(path[i])
+        # for i in range(len(path)-1,-1,-1):
+        #     print(path[i])
 
 
 n = Node([[4, 7, 8], [3, 6, 5], [1, 2, ' ']])
